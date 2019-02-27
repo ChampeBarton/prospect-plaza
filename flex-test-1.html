@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" href="/swiper.min.css">
+	<style>
+		/* default / demo page */
+		* {
+			box-sizing: border-box;
+		}
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		}
+		body {
+			font-weight: 300;
+			color: #2a2a2a;
+		}
+		p,
+		h1,
+		h2,
+		h3,
+		h4,
+		a {
+			margin: 0;
+			font-weight: 300;
+		}
+		a,
+		a:visited,
+		a:hover {
+			color: #f30;
+			text-decoration: none;
+			border-bottom: 1px solid currentColor;
+		}
+		path {
+		  fill: none;
+		  stroke: #B2BABB ;
+		  stroke-width: .5px;
+		  stroke-linejoin: round;
+		  stroke-linecap: round;
+		}	
+		
+		.waffle-four {
+		  display: flex;
+		  flex-wrap: wrap;
+		  width: 420px;
+		  padding-top: 22px;
+		  margin: 0 auto;
+		  background-color: rgba(221,221,221,0);
+		}
+
+		.waffle-fifty {
+		  display: flex;
+		  flex-wrap: wrap;
+		  width: 420px;
+		  padding-top: 22px;
+		  margin: 0 auto;
+		  background-color: rgba(221,221,221,0);
+		}
+
+		.waffle-sixty {
+		  display: flex;
+		  flex-wrap: wrap;
+		  width: 420px;
+		  padding-top: 22px;
+		  margin: 0 auto;
+		  background-color: rgba(221,221,221,0);
+		}
+
+		.waffle-eighty {
+		  display: flex;
+		  flex-wrap: wrap;
+		  width: 420px;
+		  padding-top: 22px;
+		  margin: 0 auto;
+		  background-color: rgba(221,221,221,0);
+		}
+
+		.block {
+		  width: 25px;
+		  height: 25px;
+		  margin: 3px;
+/*		  box-shadow: 0px 2px 5px grey;*/
+		  border-radius:8px;
+		  text-align: right;
+		  display: block;
+		  direction: rtl;
+		}
+		.text {
+			font-size: 1rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 200;
+			color: rgba(0,0,0,0.3);
+			position: relative;
+			right: 10px;
+			white-space: nowrap;
+			top: 17%;
+		}
+		.unit-num {
+			font-size: 1rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 550;
+			color: rgba(0,0,0,0.3);
+			position: relative;
+			right: 10px;
+			white-space: nowrap;
+			top: 17%;
+		}
+
+		.header {
+			font-size: 1.3rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 700;
+			color: rgb(0,0,0);
+		}
+
+		.building {
+			font-size: 1.5rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 700;
+			color: rgb(0,0,0);
+			text-align: center;
+
+		}
+
+/*		.gap {
+			color: rgba(0,0,0,0);
+		}*/
+
+		.head_tooltip {
+			position: absolute;
+			text-align: left;
+			width: 280px;
+			height: auto;
+			padding: 8px;
+			margin-top: -20px;
+			font-size: 1rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 200;
+			background: rgba(0,0,0,0);
+			border-bottom-right-radius: 0px; 
+			border-bottom-left-radius: 0px;
+			border-top-right-radius: 6px;
+			border-top-left-radius: 6px;
+			border-top: 1px solid rgba(0,0,0,.4);
+			border-right: 1px solid rgba(0,0,0,.4);
+			border-left: 1px solid rgba(0,0,0,.4);
+			border-bottom: 0px solid rgba(0,0,0,0);
+			pointer-events: none;
+		}
+
+		.img_tooltip {
+			position: absolute;
+			text-align: center;
+			width: 280px;
+			height: auto;
+			padding: 8px;
+			margin-top: -20px;
+			font: 10px sans-serif;
+			background: rgba(0,0,0,0);
+			border-radius: 0px;
+			border-top: 0px solid rgba(0,0,0,0);
+			border-right: 1px solid rgba(0,0,0,.4);
+			border-left: 1px solid rgba(0,0,0,.4);
+			border-bottom: 0px solid rgba(0,0,0,0);
+			pointer-events: none;
+		}
+
+		.text_tooltip {
+			position: absolute;
+			text-align: left;
+			width: 280px;
+			height: auto;
+			padding: 8px;
+			margin-top: -20px;
+			font-size: 1rem;
+			font-family: "Roboto", sans-serif;
+			font-weight: 200;
+			background: rgba(0,0,0,0);
+			border-bottom-right-radius: 6px; 
+			border-bottom-left-radius: 6px;
+			border-top-right-radius: 0px;
+			border-top-left-radius: 0px;
+			border-top: 0px solid rgba(0,0,0,0);
+			border-right: 1px solid rgba(0,0,0,.4);
+			border-left: 1px solid rgba(0,0,0,.4);
+			border-bottom: 1px solid rgba(0,0,0,.4);
+			pointer-events: none;
+		}
+
+		.swiper-container {
+			width: 100%;
+			height: 100%;
+		}
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: rgba(0,0,0,0);
+
+			/* Center slide text vertically */
+/*			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;*/
+		}
+
+
+		@media (max-width: 480px) {
+			.waffle {
+				width: 228px;
+			}
+			.block {
+				width: 34px;
+				height: 34px;
+				margin: 2px;
+			}
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<div class="swiper-container">
+	<div class="swiper-wrapper">
+	<div class="swiper-slide">
+		<p class="building">430</p>
+		<figure class="waffle-four"></figure>
+	</div>
+	<div class="swiper-slide">
+		<p class="building">1750</p>
+		<figure class="waffle-fifty"></figure>
+	</div>
+	<div class="swiper-slide">
+		<p class="building">1765</p>
+		<figure class="waffle-sixty"></figure>
+	</div>
+	<div class="swiper-slide">
+		<p class="building">1786</p>
+		<figure class="waffle-eighty"></figure>
+	</div>
+
+	</div>
+
+	<div class="swiper-pagination"></div>
+	</div>
+
+
+
+	<script src='//d3js.org/d3.v4.min.js'></script>
+	<script src='https://unpkg.com/intersection-observer@0.5.0/intersection-observer.js'></script>
+	<script src='https://unpkg.com/scrollama'></script>
+	<script src="//d3js.org/topojson.v1.min.js"></script>
+	<script src="//d3js.org/queue.v1.min.js"></script>
+	<script src="/swiper.min.js"></script>
+	<script>
+
+		var swiper = new Swiper('.swiper-container', {
+	      slidesPerView: 1,
+	      spaceBetween: 10,
+	     //  pagination: {
+	     //    el: '.swiper-pagination',
+	     //    clickable: true,
+      // },
+	    });
+
+		queue()
+				.defer(d3.csv, "430_test3.csv")
+				.defer(d3.csv, "1750_test3.csv")
+				.defer(d3.csv, "1765_test3.csv")
+				.defer(d3.csv, "1786_test3.csv")
+			    .await(enter);
+			// } else {
+			// 	queue()
+			// 		.defer(d3.csv, "prev_mobile.csv")
+			// 	    .defer(d3.csv, "cur_mobile.csv")
+			// 	    .defer(d3.csv, "nycha_latlng.csv")
+			// 	    .await(enter);
+			// }
+
+			function enter(error, four, fifty, sixty, eighty) {
+		
+				// Select your div
+				var waffle_four = d3.select('.waffle-four');
+				var waffle_fifty = d3.select('.waffle-fifty');
+				var waffle_sixty = d3.select('.waffle-sixty');
+				var waffle_eighty = d3.select('.waffle-eighty');
+				var block = d3.select('.block');
+				var axis = document.createTextNode("1");
+				// Create an array with numbers 0 - 99
+				const numbers = d3.range(30);
+
+				var temp = 0-1;
+
+				const colors = {1:'#fe4a49',2:'#35b7c8',3:'#fdd065', 4:'rgba(0,0,0,0)'};
+
+				var twelve_floors = ['Twelfth', 'Eleventh', 'Tenth', 'Ninth', 'Eighth', 'Seventh', 'Sixth', 'Fifth', 'Fourth', 'Third', 'Second', 'First'];
+
+				var fifteen_floors = ['Fifteenth', 'Fourteenth', 'Thirteenth', 'Twelfth', 'Eleventh', 'Tenth', 'Ninth', 'Eighth', 'Seventh', 'Sixth', 'Fifth', 'Fourth', 'Third', 'Second', 'First'];
+
+				var height = window.innerHeight*0.65,
+				twelve_square = height/12,
+				fifteen_square = height/15;
+
+				var head_div = d3.select("body").append("div")
+					.attr("class", "head_tooltip")
+					.style("display", "none")
+
+				var img_div = d3.select("body").append("div")	
+		    		.attr("class", "img_tooltip")				
+		    		.style("display", "none");
+
+		    	var text_div = d3.select("body").append("div")	
+		    		.attr("class", "text_tooltip")				
+		    		.style("display", "none");
+
+				waffle_four
+					.style('width', (fifteen_square)*10 + 'px')
+					.selectAll('.block')
+					.data(four)
+					.enter()
+					.append('div')
+					.attr('class', 'block')
+						.style('width', fifteen_square + 'px')
+						.style('height', fifteen_square + 'px')
+						.attr('id', function(d) { return d.apt;})
+						.attr('unit', function(d) { return d.unit;})
+						.attr('name', function(d) { return d.tenant;})
+						.attr('post', function(d) { return d.post_address;})
+						.attr('desc', function(d) { return d.desc;})
+						.attr('race', function(d) { return d.pct_blk;})
+						.attr('pov', function(d) { return d.pct_bel_pov;})
+						.attr('path', function(d) { return d.img_path;})
+					.style('background-color', d => 
+						d.bldg == 1 ? colors[4] : colors[2]
+						)
+					.style('text-align', d => 
+						d.bldg == 1 ? "right" : "center"
+					)
+					.append('text')
+					.text(function(d, i) {
+						if (d.bldg == 1) {
+
+							return fifteen_floors[i/8];
+						} else { return d.unit;} 
+					})
+					.attr('class', 'unit-num')
+						.style('right', d => 
+							d.bldg == 1 ? (10+'px') : (0+'px')
+						)
+						.style('color', d => 
+							d.bldg == 1 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.8)'
+						)
+						.style('font-size', d => 
+							d.bldg == 1 ? '1rem' : '0.8rem'
+						);
+
+				waffle_fifty
+					.style('width', (twelve_square)*10 + 'px')
+					.selectAll('.block')
+					.data(fifty)
+					.enter()
+					.append('div')
+					.attr('class', 'block')
+						.style('width', twelve_square + 'px')
+						.style('height', twelve_square + 'px')
+						.attr('id', function(d) { return d.apt;})
+						.attr('unit', function(d) { return d.unit;})
+						.attr('name', function(d) { return d.tenant;})
+						.attr('post', function(d) { return d.post_address;})
+						.attr('desc', function(d) { return d.desc;})
+						.attr('race', function(d) { return d.pct_blk;})
+						.attr('pov', function(d) { return d.pct_bel_pov;})
+						.attr('path', function(d) { return d.img_path;})
+					.style('background-color', d => 
+						d.bldg == 1 ? colors[4] : colors[2]
+						)
+					.style('text-align', d => 
+						d.bldg == 1 ? "right" : "center"
+					)
+					.append('text')
+					.text(function(d, i) {
+						if (d.bldg == 1) {
+							return twelve_floors[i/8];
+						} else { return d.unit;} 
+					})
+					.attr('class', 'unit-num')
+						.style('right', d => 
+							d.bldg == 1 ? (10+'px') : (0+'px')
+						)
+						.style('color', d => 
+							d.bldg == 1 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.8)'
+						)
+						.style('font-size', d => 
+							d.bldg == 1 ? '1rem' : '0.8rem'
+						);
+
+				waffle_sixty
+					.style('width', (twelve_square)*10 + 'px')
+					.selectAll('.block')
+					.data(sixty)
+					.enter()
+					.append('div')
+					.attr('class', 'block')
+						.style('width', twelve_square + 'px')
+						.style('height', twelve_square + 'px')
+						.attr('id', function(d) { return d.apt;})
+						.attr('unit', function(d) { return d.unit;})
+						.attr('name', function(d) { return d.tenant;})
+						.attr('post', function(d) { return d.post_address;})
+						.attr('desc', function(d) { return d.desc;})
+						.attr('race', function(d) { return d.pct_blk;})
+						.attr('pov', function(d) { return d.pct_bel_pov;})
+						.attr('path', function(d) { return d.img_path;})
+					.style('background-color', d => 
+						d.bldg == 1 ? colors[4] : colors[2]
+						)
+					.style('text-align', d => 
+						d.bldg == 1 ? "right" : "center"
+					)
+					.append('text')
+					.text(function(d, i) {
+						if (d.bldg == 1) {
+
+							return twelve_floors[i/8];
+						} else { return d.unit;} 
+					})
+					.attr('class', 'unit-num')
+						.style('right', d => 
+							d.bldg == 1 ? (10+'px') : (0+'px')
+						)
+						.style('color', d => 
+							d.bldg == 1 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.8)'
+						)
+						.style('font-size', d => 
+							d.bldg == 1 ? '1rem' : '0.8rem'
+						);
+
+				waffle_eighty
+					.style('width', (fifteen_square)*10 + 'px')
+					.selectAll('.block')
+					.data(eighty)
+					.enter()
+					.append('div')
+					.attr('class', 'block')
+						.style('width', fifteen_square + 'px')
+						.style('height', fifteen_square + 'px')
+						.attr('id', function(d) { return d.apt;})
+						.attr('unit', function(d) { return d.unit;})
+						.attr('name', function(d) { return d.tenant;})
+						.attr('post', function(d) { return d.post_address;})
+						.attr('desc', function(d) { return d.desc;})
+						.attr('race', function(d) { return d.pct_blk;})
+						.attr('pov', function(d) { return d.pct_bel_pov;})
+						.attr('path', function(d) { return d.img_path;})
+					.style('background-color', d => 
+						d.bldg == 1 ? colors[4] : colors[2]
+						)
+					.style('text-align', d => 
+						d.bldg == 1 ? "right" : "center"
+					)
+					.append('text')
+					.text(function(d, i) {
+						if (d.bldg == 1) {
+							return fifteen_floors[i/8];
+						} else { return d.unit;} 
+					})
+					.attr('class', 'unit-num')
+						.style('right', d => 
+							d.bldg == 1 ? (10+'px') : (0+'px')
+						)
+						.style('color', d => 
+							d.bldg == 1 ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.8)'
+						)
+						.style('font-size', d => 
+							d.bldg == 1 ? '1rem' : '0.8rem'
+						);
+
+
+				// var name = "Cool B";
+				var image = "coolB.png";
+
+				waffle_four
+					.selectAll('.block')
+					.data(four)
+					.on("mouseover", mouseover)
+				    .on("mousemove", mousemove)
+				    .on("mouseout", mouseout);
+
+				waffle_fifty
+					.selectAll('.block')
+					.data(fifty)
+					.on("mouseover", mouseover)
+				    .on("mousemove", mousemove)
+				    .on("mouseout", mouseout);
+
+				waffle_sixty
+					.selectAll('.block')
+					.data(sixty)
+					.on("mouseover", mouseover)
+				    .on("mousemove", mousemove)
+				    .on("mouseout", mouseout);
+
+				waffle_eighty
+					.selectAll('.block')
+					.data(eighty)
+					.on("mouseover", mouseover)
+				    .on("mousemove", mousemove)
+				    .on("mouseout", mouseout);
+
+			    function mouseover() {
+			    	// console.log(img);
+			    	if (d3.select(this).style('background-color') != 'rgba(0, 0, 0, 0)'){
+						head_div
+							.html("<p class='header'>" + d3.select(this).attr("name") + "<span class='text' style='float:right;'>" + d3.select(this).attr("unit") + "</span></p><p>Moved to: " + d3.select(this).attr("post") + "</p><p>Race: " + d3.select(this).attr("race") + "</p><p>Poverty: " + d3.select(this).attr("pov") + "</p>")
+							.style("display", "block")
+
+						if(d3.select(this).attr("path") != "NULL") {
+							img_div
+								.html("<div id='thumbnail'><span></span><img width='50%' height='50%' src='" + d3.select(this).attr("path") + "' /></div>")
+								.style("display", "block");
+								// .text('Cool B');
+						}
+
+						text_div
+							.text(d3.select(this).attr("desc"))
+							.style("display", "block");
+						d3.select(this).style("cursor", "pointer");
+						d3.select(this).style('border', 1 + 'px solid black');
+					} 
+				}
+
+				function mousemove() {
+					if (d3.select(this).style('background-color') != 'rgba(0, 0, 0, 0)'){
+						if(d3.select(this).attr('id') == 'A' || d3.select(this).attr('id') == 'B' || d3.select(this).attr('id') == 'C') {
+							head_div
+								.style("left", 60 + "px")
+								.style("top", 55 + "px");
+
+							if(d3.select(this).attr("path") != "NULL") {
+								img_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 60 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + "px");
+
+								text_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 60 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + parseInt(img_div.style("height")) + "px");
+							} else {
+								text_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 60 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + "px");
+							}
+						} else {
+							head_div
+								.style("left", 900 + "px")
+								.style("top", 55 + "px");
+
+							if(d3.select(this).attr("path") != "NULL") {
+								img_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 900 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + "px");
+
+								text_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 900 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + parseInt(img_div.style("height")) + "px");
+							} else {
+								text_div
+								  // .text(d3.event.pageX + ", " + d3.event.pageY)
+									.style("left", 900 + "px")
+									.style("top", 55 + parseInt(head_div.style("height")) + "px");
+							}
+
+							
+						}
+					} 
+				}
+
+				function mouseout() {
+					if (d3.select(this).style('background-color') != 'rgba(0, 0, 0, 0)'){
+						head_div.style("display", "none");
+						img_div.style("display", "none");
+						text_div.style("display", "none");
+						d3.select(this).style("cursor", "default");
+						d3.select(this).style('border',0 + 'px solid black');
+					} 
+				}
+
+				function clicked(){
+					if (d3.select(this).style('background-color') != 'rgba(0, 0, 0, 0)'){
+						d3.select(this).transition()
+					      .style("background-color", "#fe4a49");
+				 	} 
+				}
+
+				// waffle
+				// 	.selectAll('.block')
+				// 	.data(buildings[0])
+				// 	.transition().duration(1000)
+				// 		.style('background-color', d => 
+				// 			d == 1 ? colors[4] : d == 2 ? colors[4] : colors[1]
+				// 		)
+				// 		.style('width', function(d,i) {
+				// 			if (i%15 == 0) {
+				// 				return (square*1.5 + 'px');
+				// 			} else return square;
+				// 		});
+
+			}
+
+	</script>
+</body>
+
+</html>
