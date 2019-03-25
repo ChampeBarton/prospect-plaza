@@ -350,33 +350,33 @@
 				// var name = "Cool B";
 				var image = "coolB.png";
 
-				waffle_four
-					.selectAll('.block')
-					.data(four)
-					.on("mouseover", mouseover)
-				    .on("mousemove", mousemove)
-				    .on("mouseout", mouseout);
+// 				waffle_four
+// 					.selectAll('.block')
+// 					.data(four)
+// 					.on("mouseover", mouseover)
+// 				    .on("mousemove", mousemove)
+// 				    .on("mouseout", mouseout);
 
-				waffle_fifty
-					.selectAll('.block')
-					.data(fifty)
-					.on("mouseover", mouseover)
-				    .on("mousemove", mousemove)
-				    .on("mouseout", mouseout);
+// 				waffle_fifty
+// 					.selectAll('.block')
+// 					.data(fifty)
+// 					.on("mouseover", mouseover)
+// 				    .on("mousemove", mousemove)
+// 				    .on("mouseout", mouseout);
 
-				waffle_sixty
-					.selectAll('.block')
-					.data(sixty)
-					.on("mouseover", mouseover)
-				    .on("mousemove", mousemove)
-				    .on("mouseout", mouseout);
+// 				waffle_sixty
+// 					.selectAll('.block')
+// 					.data(sixty)
+// 					.on("mouseover", mouseover)
+// 				    .on("mousemove", mousemove)
+// 				    .on("mouseout", mouseout);
 
-				waffle_eighty
-					.selectAll('.block')
-					.data(eighty)
-					.on("mouseover", mouseover)
-				    .on("mousemove", mousemove)
-				    .on("mouseout", mouseout);
+// 				waffle_eighty
+// 					.selectAll('.block')
+// 					.data(eighty)
+// 					.on("mouseover", mouseover)
+// 				    .on("mousemove", mousemove)
+// 				    .on("mouseout", mouseout);
 
 				function zero() {
 					slider.transition() 
