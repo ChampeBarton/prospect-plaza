@@ -1,3 +1,9 @@
+		var mobile = 0;
+
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			mobile = 1;
+		}
+
 
 		var swiper = new Swiper('.swiper-container', {
 		      slidesPerView: 1,
@@ -33,17 +39,24 @@
 			    height = +svg.attr("height")
 			    race_data = 1;
 
-				var x = d3.scaleLinear()
-				    .domain([0, 100])
-				    .range([0, 400])
-				    .clamp(true);
+				if(!mobile){
+					var x = d3.scaleLinear()
+					    .domain([0, 100])
+					    .range([0, 400])
+					    .clamp(true);
+				} else {
+					var x = d3.scaleLinear()
+					    .domain([0, 100])
+					    .range([0, 250])
+					    .clamp(true);
+				}
 
 				var colorScale = d3.scaleSequential(d3.interpolateReds)
     				.domain([0, 100]);
 
 				var slider = svg.append("g")
 				    .attr("class", "slider")
-				    .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+				    .attr("transform", "translate(" + margin.left + "," + margin.height / 2 + ")");
 
 				slider.append("line")
 				    .attr("class", "track")
