@@ -32,7 +32,15 @@
 
 				var spec_margin = 200;
 
-				var svg = d3.select("svg[id='slider-bar']");
+				if(!mobile) {
+					var svg = d3.select("svg[id='slider-bar']")
+						.attr("width", 500 + 'px')
+						.attr("height", 100 + 'px');
+				} else {
+					var svg = d3.select("svg[id='slider-bar']")
+						.attr("width", 300 + 'px')
+						.attr("height", 100 + 'px');
+				}
 
 			    var margin = {right: 50, left: 50},
 			    width = +svg.attr("width") - margin.left - margin.right,
