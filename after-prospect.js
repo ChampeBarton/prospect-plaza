@@ -64,7 +64,7 @@
 
 				var slider = svg.append("g")
 				    .attr("class", "slider")
-				    .attr("transform", "translate(" + margin.left + "," + margin.height / 2 + ")");
+				    .attr("transform", "translate(" + margin.left + "," + margin.right / 2 + ")");
 
 				slider.append("line")
 				    .attr("class", "track")
